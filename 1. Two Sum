@@ -1,0 +1,39 @@
+import java.util.stream.IntStream;
+class Solution {
+   /* public int[] twoSum(int[] nums, int target) {
+      for(int i=0;i<nums.length;i++) {
+        if(nums[i]+nums[i+1] == target) {
+            int ans[] = {i,i+1};
+            return ans;
+        }
+      }
+      return nums;
+    }*/
+
+     public int[] twoSum(int[] nums, int target) {
+      HashMap<Integer,Integer> hmap = new HashMap<Integer,Integer>();
+      for(int i=0;i<nums.length;i++) {
+        int n = target - nums[i];
+        if(hmap.containsKey(n)) {
+            return new int[] {hmap.get(n),i};
+        }
+        hmap.put(nums[i],i);
+      }
+      return new int[]{};
+    }
+
+    /*public int[] twoSum(int[] nums, int target) {
+      var hmap = new HashMap<Integer,Integer>();
+     return IntStream.range(0,nums.length).filter(i->{
+        var diff = target-nums[i];
+        if(hmap.containsKey(diff)) {
+            return true;
+        }
+        hmap.put(nums[i],i);
+        return false;
+     }).boxed()
+     .findFirst()
+     .map(i-> new int[]{hmap.get(target-nums[i]),i})
+     .orElse(new int[]{});
+    }*/
+}
